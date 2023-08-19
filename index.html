@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dronalarium: Frequency, Amplitude, Phase, Wavelength, Interference, Harmonics</title>
+<style>
+main {
+  margin: 0 auto;
+  width: 90%;
+}
+
+:root {
+  --maroon: #6A040F;
+  --darkred: #9D0208;
+  --redorange: #D00000;
+  --darkorange: #DC2F02;
+  --orange: #E85D04;
+  --pumpkin: #F48C06;
+}
+/*||Circles -----------------------------*/
+
+.container {
+  align-items: center;
+  display: grid;
+  height: 30rem;
+  margin: auto;
+  width: max-content;
+}
+
+.maroon-circle {
+  background-color: var(--maroon);
+  grid-row: 1;
+  grid-column: 1 / span 4;
+}
+
+.darkred-circle {
+  background-color: var(--darkred);
+  grid-column: 3 / span 4;
+  grid-row: -2;
+}
+
+.orange-circle {
+  grid-column: 3 / span 4;
+  grid-row: 2;
+  background-color: var(--orange);
+}
+
+.redorange-circle {
+  background-color: var(--redorange);
+  grid-column: 7 / span 4;
+  grid-row: -2;
+  z-index: 2;
+}
+
+.darkorange-circle {
+  background-color: var(--darkorange);
+  grid-row: 1;
+  grid-column: 9 / span 4;
+}
+
+.pumpkin-circle {
+  background-color: var(--pumpkin);
+  grid-row: 2;
+  grid-column: 7 / span 4;
+}
+
+.circle {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.circle p {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.section-introduction .circle {
+  text-align: center;
+  height: 16rem;
+  width: 16rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+button {
+}
+
+/* buttons */
+.button {
+  -webkit-user-select: none;
+  background-color: #3DD1E7;
+  border: 0 solid #E5E7EB;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.75rem;
+  max-width: 460px;
+  padding: .75rem 1.65rem;
+  position: relative;
+  position: relative;
+  text-align: center;
+  text-decoration-thickness: auto;
+  text-decoration: none #000000 solid;
+  text-transform: capitalize;
+  touch-action: manipulation;
+  transform: rotate(-2deg);
+  user-select: none;
+  width: 100%;
+}
+
+.button:focus {
+  outline: 0;
+}
+
+.button:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.button:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+@media (min-width: 768px) {
+  .button {
+    padding: .75rem 3rem;
+    font-size: 1.25rem;
+  }
+}
+</style>
+</head>
+<body>
+  <main>
+    <section class="section-introduction">
+      <h1 class="section-heading">Dronalarium: Frequency, Amplitude, Phase, Wavelength, Interference, Harmonics</h1>
+      <div class="container">
+        <div class="maroon-circle circle ">
+          <button class="button">frequency</button>
+        </div>
+        <div class="darkred-circle circle">
+          <button class="button">amplitude</button>
+        </div>
+        <div class="redorange-circle circle">
+          <button class="button">phase</button>
+        </div>
+        <div class="darkorange-circle circle">
+          <button class="button">wavelength</button>
+        </div>
+        <div class="orange-circle circle">
+          <button class="button">interference</button>
+        </div>
+        <div class="pumpkin-circle circle">
+          <button class="button">harmonics</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
