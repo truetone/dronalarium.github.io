@@ -144,7 +144,7 @@ button {
 }
 
 .button:after {
-  content: '';
+  content: "";
   position: absolute;
   border: 1px solid #000000;
   bottom: 4px;
@@ -172,7 +172,8 @@ button {
       <h1 class="section-heading">Dronalarium: Frequency, Amplitude, Phase, Wavelength, Interference, Harmonics</h1>
       <div class="container">
         <div class="maroon-circle circle ">
-          <button class="button">frequency</button>
+          <button class="button" id="play-frequency" data-playing="false" role="switch" aria-checked="false">frequency</button>
+          <audio src="audio/01-Frequency.mp3"></audio>
         </div>
         <div class="darkred-circle circle">
           <button class="button transform-plus-2">amplitude</button>
@@ -192,5 +193,33 @@ button {
       </div>
     </section>
   </main>
+  <script>
+    // Frequency, Amplitude, Phase, Wavelength, Interference, Harmonics
+    const audioContext = new AudioContext();
+    const audioElement = document.querySelector("audio");
+    const track = audioContext.createMediaElementSource(audioElement);
+    const playButton = document.querySelector("#play-frequency");
+    track.connect(audioContext.destination);
+
+    playButton.addEventListener(
+      "click",
+      () => {
+        // Check if context is in suspended state (autoplay policy)
+        if (audioContext.state === "suspended") {
+          audioContext.resume();
+        }
+
+        // Play or pause track depending on state
+        if (playButton.dataset.playing === "false") {
+          audioElement.play();
+          playButton.dataset.playing = "true";
+        } else if (playButton.dataset.playing === "true") {
+          audioElement.pause();
+          playButton.dataset.playing = "false";
+        }
+      },
+      false,
+    );
+  </script>
 </body>
 </html>
