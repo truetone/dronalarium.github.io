@@ -173,27 +173,33 @@ button {
       <div class="container">
         <div class="maroon-circle circle ">
           <button class="button" id="play-frequency" data-playing="false" role="switch" aria-checked="false">frequency</button>
-          <audio id="frequency-elem" data-button-selector="#play-frequency" src="audio/01-Frequency.mp3"></audio>
+          <input id="frequency-pan" type="range" min="-1" max="1" step="0.1">
+          <audio id="frequency-elem" data-button-selector="#play-frequency" data-pan-selector="#frequency-pan" src="audio/01-Frequency.mp3"></audio>
         </div>
         <div class="darkred-circle circle">
           <button class="button transform-plus-2" id="play-amplitude" data-playing="false" role="switch" aria-checked="false">amplitude</button>
-          <audio id="amplitude-elem" data-button-selector="#play-amplitude" src="audio/02-Amplitude.mp3"></audio>
+          <input id="amplitude-pan" type="range" min="-1" max="1" step="0.1" value="-.7">
+          <audio id="amplitude-elem" data-button-selector="#play-amplitude" data-pan-selector="#amplitude-pan" src="audio/02-Amplitude.mp3"></audio>
         </div>
         <div class="redorange-circle circle">
           <button class="button transform-minus-3" id="play-phase" data-playing="false" role="switch" aria-checked="false">phase</button>
-          <audio id="phase-elem" data-button-selector="#play-phase" src="audio/03-Phase.mp3"></audio>
+          <input id="phase-pan" type="range" min="-1" max="1" step="0.1" value="-.4">
+          <audio id="phase-elem" data-button-selector="#play-phase" data-pan-selector="#phase-pan" src="audio/03-Phase.mp3"></audio>
         </div>
         <div class="darkorange-circle circle">
           <button class="button transform-plus-3" id="play-wavelength" data-playing="false" role="switch" aria-checked="false">wavelength</button>
-          <audio id="wavelength-elem" data-button-selector="#play-wavelength" src="audio/04-Wavelength.mp3"></audio>
+          <input id="wavelength-pan" type="range" min="-1" max="1" step="0.1" value=".4">
+          <audio id="wavelength-elem" data-button-selector="#play-wavelength" data-pan-selector="#wavelength-pan" src="audio/04-Wavelength.mp3"></audio>
         </div>
         <div class="orange-circle circle">
           <button class="button transform-plus-4" id="play-interference" data-playing="false" role="switch" aria-checked="false">interference</button>
-          <audio id="interference-elem" data-button-selector="#play-interference" src="audio/05-Interference.mp3"></audio>
+          <input id="interference-pan" type="range" min="-1" max="1" step="0.1" value=".7">
+          <audio id="interference-elem" data-button-selector="#play-interference" data-pan-selector="#interference-pan" src="audio/05-Interference.mp3"></audio>
         </div>
         <div class="pumpkin-circle circle">
           <button class="button transform-minus-4" id="play-harmonics" data-playing="false" role="switch" aria-checked="false">harmonics</button>
-          <audio id="harmonics-elem" data-button-selector="#play-harmonics" src="audio/06-Harmonics.mp3"></audio>
+          <input id="harmonics-pan" type="range" min="-1" max="1" step="0.1" value=".2">
+          <audio id="harmonics-elem" data-button-selector="#play-harmonics" data-pan-selector="#interference-harmonics" src="audio/06-Harmonics.mp3"></audio>
         </div>
       </div>
     </section>
@@ -206,6 +212,16 @@ button {
     audioElements.forEach((elem) => {
       const track = audioContext.createMediaElementSource(elem);
       const playButton = document.querySelector(elem.dataset.buttonSelector);
+      const panControl = document.querySelector(elem.dataset.panSelector);
+      const panner = new StereoPannerNode(audioContext);
+
+      track.connect(panner);
+      panner.connect(audioContext.destination);
+      panner.pan.value = panControl.value;
+
+      panControl.oninput = () => {
+        panner.pan.value = panControl.value;
+      };
 
       track.connect(audioContext.destination);
 
