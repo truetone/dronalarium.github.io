@@ -173,7 +173,7 @@ button {
       <div class="container">
         <div class="maroon-circle circle ">
           <button class="button" id="play-frequency" data-playing="false" role="switch" aria-checked="false">frequency</button>
-          <audio src="audio/01-Frequency.mp3"></audio>
+          <audio id="frequency-elem" data-button-selector="#play-frequency" src="audio/01-Frequency.mp3"></audio>
         </div>
         <div class="darkred-circle circle">
           <button class="button transform-plus-2">amplitude</button>
@@ -196,30 +196,34 @@ button {
   <script>
     // Frequency, Amplitude, Phase, Wavelength, Interference, Harmonics
     const audioContext = new AudioContext();
-    const audioElement = document.querySelector("audio");
-    const track = audioContext.createMediaElementSource(audioElement);
-    const playButton = document.querySelector("#play-frequency");
-    track.connect(audioContext.destination);
+    // const playButtons = document.querySelectorAll("button");
+    const audioElements = Array.from(document.querySelectorAll("audio"));
 
-    playButton.addEventListener(
-      "click",
-      () => {
-        // Check if context is in suspended state (autoplay policy)
-        if (audioContext.state === "suspended") {
-          audioContext.resume();
-        }
+    audioElements.forEach((elem) => {
+      const track = audioContext.createMediaElementSource(elem);
+      const playButton = document.querySelector(elem.dataset.buttonSelector);
 
-        // Play or pause track depending on state
-        if (playButton.dataset.playing === "false") {
-          audioElement.play();
-          playButton.dataset.playing = "true";
-        } else if (playButton.dataset.playing === "true") {
-          audioElement.pause();
-          playButton.dataset.playing = "false";
-        }
-      },
-      false,
-    );
+      track.connect(audioContext.destination);
+      playButton.addEventListener(
+        "click",
+        () => {
+          // Check if context is in suspended state (autoplay policy)
+          if (audioContext.state === "suspended") {
+            audioContext.resume();
+          }
+
+          // Play or pause track depending on state
+          if (playButton.dataset.playing === "false") {
+            elem.play();
+            playButton.dataset.playing = "true";
+          } else if (playButton.dataset.playing === "true") {
+            elem.pause();
+            playButton.dataset.playing = "false";
+          }
+        },
+        false,
+      );
+    });
   </script>
 </body>
 </html>
