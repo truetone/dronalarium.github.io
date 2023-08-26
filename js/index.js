@@ -39,10 +39,10 @@ playAllButton.addEventListener("click", (event) => {
 const togglePlaying = (elem) => {
   if (elem.dataset.playing === "false") {
     elem.dataset.playing = "true";
-    playAllButton.innerText = "Stop All";
+    elem.textContent = "Stop All";
   } else {
     elem.dataset.playing = "false";
-    playAllButton.innerText = "Play All";
+    elem.textContent = "Play All";
   }
 }
 
