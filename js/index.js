@@ -19,17 +19,33 @@ audioFiles.forEach((file) => {
 });
 
 playAllButton.addEventListener("click", (event) => {
-  audioSources.forEach((source) => {
-    if (audioContext.state === "suspended") {
-      audioContext.resume();
-    }
+  togglePlaying(playAllButton);
 
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+
+  audioSources.forEach((source) => {
     source.connect(audioContext.destination);
-    source.start();
+
+    if (playAllButton.dataset.playing === "true") {
+      source.start();
+    } else {
+      source.stop();
+    }
   });
 });
 
-// playAllButton.innerText = "Stop All";
+const togglePlaying = (elem) => {
+  if (elem.dataset.playing === "false") {
+    elem.dataset.playing = "true";
+    playAllButton.innerText = "Stop All";
+  } else {
+    elem.dataset.playing = "false";
+    playAllButton.innerText = "Play All";
+  }
+}
+
 
 audioElements.forEach((elem) => {
   const source = audioContext.createMediaElementSource(elem);
