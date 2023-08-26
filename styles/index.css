@@ -1,0 +1,155 @@
+main {
+  margin: 0 auto;
+  width: 90%;
+}
+
+:root {
+  --maroon: #6A040F;
+  --darkred: #9D0208;
+  --redorange: #D00000;
+  --darkorange: #DC2F02;
+  --orange: #E85D04;
+  --pumpkin: #F48C06;
+}
+/*||Circles -----------------------------*/
+
+.container {
+  align-items: center;
+  display: grid;
+  height: 30rem;
+  margin: auto;
+  width: max-content;
+}
+
+.maroon-circle {
+  background-color: var(--maroon);
+  grid-column: 1 / span 4;
+  grid-row: 1;
+}
+
+.darkred-circle {
+  background-color: var(--darkred);
+  grid-column: 3 / span 4;
+  grid-row: -2;
+}
+
+.orange-circle {
+  background-color: var(--orange);
+  grid-column: 3 / span 4;
+  grid-row: 2;
+}
+
+.redorange-circle {
+  background-color: var(--redorange);
+  grid-column: 7 / span 4;
+  grid-row: -2;
+  z-index: 2;
+}
+
+.darkorange-circle {
+  background-color: var(--darkorange);
+  grid-column: 9 / span 4;
+  grid-row: 1;
+}
+
+.pumpkin-circle {
+  background-color: var(--pumpkin);
+  grid-column: 7 / span 4;
+  grid-row: 2;
+}
+
+.circle {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.circle p {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.section-introduction .circle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  height: 16rem;
+  text-align: center;
+  width: 16rem;
+}
+
+/* buttons */
+.button {
+  -webkit-user-select: none;
+  background-color: #3DD1E7;
+  border: 0 solid #E5E7EB;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.75rem;
+  max-width: 460px;
+  padding: .75rem 1.65rem;
+  position: relative;
+  text-align: center;
+  text-decoration-thickness: auto;
+  text-decoration: none #000000 solid;
+  text-transform: capitalize;
+  touch-action: manipulation;
+  transform: rotate(-2deg);
+  user-select: none;
+  width: 100%;
+}
+
+.button.transform-plus-2 {
+  transform: rotate(2deg);
+}
+
+.button.transform-plus-3 {
+  transform: rotate(3deg);
+}
+
+.button.transform-minus-3 {
+  transform: rotate(-3deg);
+}
+
+.button.transform-minus-4 {
+  transform: rotate(-4deg);
+}
+
+.button.transform-plus-4 {
+  transform: rotate(4deg);
+}
+
+.button:focus {
+  outline: 0;
+}
+
+.button:after {
+  border: 1px solid #000000;
+  bottom: 4px;
+  content: "";
+  height: calc(100% - 1px);
+  left: 4px;
+  position: absolute;
+  width: calc(100% - 1px);
+}
+
+.button:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+@media (min-width: 768px) {
+  .button {
+    font-size: 1.25rem;
+    padding: .75rem 3rem;
+  }
+}
+
